@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # TraceLens
 
 An image forensics tool that analyzes uploaded photos for signs of tampering or AI generation, and shows where a photo was taken if GPS data is present.
