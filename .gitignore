@@ -1,1 +1,5 @@
+.env
 uploads/
+test_data/
+__pycache__/
+*.pyc

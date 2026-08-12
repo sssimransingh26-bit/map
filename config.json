@@ -1,0 +1,48 @@
+{
+  "thresholds": {
+    "noise_std_delta": 50.0,
+    "edge_std": 50.0,
+    "exif_time_delta_seconds": 86400,
+    "verdict_suspicious": 75,
+    "verdict_review": 40
+  },
+  "block_analysis": {
+    "noise_block_size": 32,
+    "edge_block_size": 32,
+    "clone_block_size": 32,
+    "clone_stride": 16,
+    "canny_low": 100,
+    "canny_high": 200
+  },
+"weights": {
+    "exif_timestamp_mismatch": 1.0,
+    "exif_date_unparseable": 0.5,
+    "exif_date_missing": 0.5,
+    "editing_software_detected": 1.5,
+    "suspicious_camera_tag": 1.0,
+    "gps_all_zero": 0.75,
+    "gps_without_camera_info": 0.5,
+    "noise_inconsistency": 0.1,
+    "clone_detection": 0.0,
+    "edge_artifact_inconsistency": 0.1,
+    "ai_tool_metadata": 2.0,
+    "ai_generation_params": 2.0,
+    "metadata_stripped_high_res": 3.0,
+    "ai_classifier_api": 2.0
+},
+  "ai_tool_keywords": [
+    "stable diffusion", "midjourney", "dall-e", "artbreeder",
+    "generative", "dream", "diffusion", "wombo", "adobe firefly"
+  ],
+  "editing_software_keywords": ["photoshop", "editor", "gimp", "snapseed"],
+  "metadata_stripped_min_dimension": 1024,
+  "metadata_stripped_max_tag_count": 5,
+  "ai_classifier_api": {
+    "enabled": true,
+    "provider": "huggingface",
+    "model_id": "Organika/sdxl-detector",
+    "endpoint": "https://api-inference.huggingface.co/models/Organika/sdxl-detector",
+    "timeout_seconds": 15,
+    "suspicious_label_keywords": ["artificial", "ai", "fake", "generated", "synthetic"]
+  }
+}

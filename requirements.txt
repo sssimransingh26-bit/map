@@ -1,0 +1,10 @@
+Flask
+Pillow
+opencv-python
+numpy
+scikit-image
+imagehash
+exifread
+folium
+requests
+ 

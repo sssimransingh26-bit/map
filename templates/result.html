@@ -25,6 +25,28 @@
                 <small>EXIF data can be faked or manipulated. For full authenticity, verify manually or with advanced tools.</small>
             </div>
             {% endif %}
+
+            {% if forensics %}
+            <div class="card shadow-lg border-0 mt-3 mb-3">
+              <div class="card-body">
+                <h4>Forensic Risk Score: {{ forensics.authenticity_score }}/100</h4>
+                <h5>Verdict: {{ forensics.verdict }}</h5>
+                <ul class="list-group list-group-flush mt-3">
+                {% for signal in forensics.signals %}
+                  <li class="list-group-item">
+                    <strong>{{ signal.name }}</strong> ({{ signal.severity }}): {{ signal.evidence }}
+                  </li>
+                {% endfor %}
+                </ul>
+                <p class="mt-3">Faces detected: {{ forensics.faces_detected }}</p>
+                {% if forensics.ela_image %}
+                <img src="/uploads/{{ forensics.ela_image }}" class="img-fluid rounded mt-2" style="max-height:300px;">
+                <p><small>ELA visualization — brighter/white areas may indicate manipulation.</small></p>
+                {% endif %}
+              </div>
+            </div>
+            {% endif %}
+
           <div class="card shadow-lg border-0">
             <div class="card-body">
             {% if lat is not none and lon is not none %}
@@ -41,6 +63,12 @@
                     Open in Google Maps
                   </a>
                 </div>
+                {% if country %}
+                <p class="mt-3"><strong>Detected country:</strong> {{ country }}</p>
+                {% endif %}
+                {% if utm_x and utm_y %}
+                <p><strong>UTM coordinates:</strong> {{ utm_x|round(2) }}, {{ utm_y|round(2) }} (Zone {{ utm_zone }})</p>
+                {% endif %}
             {% else %}
                 <div class="alert alert-warning">
                   <h3>No GPS location found in this photo!</h3>
